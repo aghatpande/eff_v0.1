@@ -14,11 +14,6 @@ library(poorman)
 library(arrow)
 ```
 
-## load mne
-
-```{r}
-library(mne)
-```
 ## loading data
   
 Please change the read_feather and write_feather inputs appropriately
