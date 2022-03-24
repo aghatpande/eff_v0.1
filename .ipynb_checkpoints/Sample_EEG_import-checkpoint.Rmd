@@ -1,0 +1,32 @@
+---
+title: "load_sample_EEG"
+author: "ASG"
+date: "3/12/2022"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r include=FALSE}
+library(devtools)
+library(poorman)
+library(ggplot2)
+library(arrow)
+library(reticulate)
+```
+
+## load mne
+
+```{r}
+library(mne)
+```
+
+## loading the sample data
+
+```{r}
+sample_eyes_closed <- arrow::read_feather("~/eff_v0.1/sample_data/sample_eyesclosed.feather")
+```
+
+

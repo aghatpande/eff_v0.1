@@ -1,0 +1,41 @@
+---
+title: "EEG_DL_classifier"
+author: "ASG"
+date: "3/24/2022"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r include=FALSE}
+library(poorman)
+library(arrow)
+library(reticulate)
+library(tensorflow)
+library(keras)
+```
+
+## loading the training data
+  Turns out the arrow package from R read the data incorrectly in these files; hence had to import the python package pyarrow to read in the files correctly
+  
+```{python}
+import pyarrow.feather as feather
+path = '/Users/asgnxt/mne-miniconda/mne_data/train_val_16/train_16/eyesclosed_train.feather'
+df_closed = feather.read_feather(path)
+path = '/Users/asgnxt/mne-miniconda/mne_data/train_val_16/train_16/eyesopen_train.feather'
+df_open = feather.read_feather(path)
+path = '/Users/asgnxt/mne-miniconda/mne_data/train_val_16/train_16/mathematic_train.feather'
+df_mathematic = feather.read_feather(path)
+path = '/Users/asgnxt/mne-miniconda/mne_data/train_val_16/train_16/memory_train.feather'
+df_memory = feather.read_feather(path)
+path = '/Users/asgnxt/mne-miniconda/mne_data/train_val_16/train_16/music_train.feather'
+df_music = feather.read_feather(path)
+```
+
+## Creating the input to keras
+```{r}
+
+```
+

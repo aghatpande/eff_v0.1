@@ -1,0 +1,56 @@
+---
+title: "load_sample_EEG"
+author: "ASG"
+date: "3/12/2022"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r include=FALSE}
+library(poorman)
+library(ggplot2)
+library(arrow)
+library(reticulate)
+library(tensorflow)
+library(keras)
+library(tfdatasets)
+```
+
+## loading the training data
+
+```{r}
+train_eyes_closed <- arrow::read_feather("~/mne-miniconda/mne_data/train_val_16/train_16/eyesclosed_train.feather")
+train_eyes_open <- arrow::read_feather("~/mne-miniconda/mne_data/train_val_16/train_16/eyesopen_train.feather")
+train_mathematic <- arrow::read_feather("~/mne-miniconda/mne_data/train_val_16/train_16/mathematic_train.feather")
+```
+
+
+```{r}
+train_memory <- arrow::read_feather("~/mne-miniconda/mne_data/train_val_16/train_16/memory_train.feather")
+train_music <- arrow::read_feather("~/mne-miniconda/mne_data/train_val_16/train_16/music_train.feather")
+```
+
+```{r}
+
+EEGs <- list.files()
+```
+
+```{r}
+channels_map <- read.csv('channels.csv')
+```
+
+```{r}
+classes <- c("eyesclosed", "eyesopen", "mathematic", "memory", "music" )
+classes
+```
+
+```{r}
+z_train_memory <- scale(t(train_memory))
+```
+
+
+
+
