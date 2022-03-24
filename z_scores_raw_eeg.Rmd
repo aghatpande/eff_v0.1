@@ -1,0 +1,41 @@
+---
+title: "z_scores_raw_eeg"
+author: "ASG"
+date: "3/16/2022"
+output: github_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r include=FALSE}
+library(poorman)
+library(arrow)
+```
+
+## loading data
+  
+Please change the read_feather and write_feather inputs appropriately
+
+```{r}
+orig <- 
+  arrow::read_feather('sub10_ses1_music.feather')
+```
+
+```{r}
+# transpose original tibble to create column-wise time series vectors
+t_orig <- t(orig)
+
+# scale (calculate z scores; each column of the output will have mean = 0 and sd = 1)
+z_t_orig <- scale(t_orig)
+
+# transpose again to get data back to row-wise time series
+z_orig <- t(z_t_orig)
+```
+
+```{r}
+# write feather file
+arrow::write_feather(as.data.frame(z_orig),'z_subj10_ses1_music.feather')
+```
+
